@@ -55,7 +55,19 @@ def main():
     result = marvelcharcall(rand, keyhash, pubkey, args.hero)
 
     ## display results
-    pprint(result)
+ #   print(f"Events {hero} has been involved in:")
+    
+    print(f"{args.hero} has been involved in the following events:")
+    results = result["data"]["results"]
+    for resulttype in results:
+        events = resulttype["events"]["items"]
+        for event in events:            
+            pprint(event["name"])
+    print(f"\n{args.hero} has also been involved in the following comic series:")
+    for resulttype in results:
+        series = resulttype["series"]["items"]
+        for comic in series:            
+            pprint(comic["name"])
 
 ## Define arguments to collect
 if __name__ == '__main__':
